@@ -31,14 +31,21 @@ function Inference() {
   }
   return (
     <div className="Inference">
-      <h1> Run Inference on a Single Image</h1>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <input type="file" className="fileInput" />
-        <button type="submit" className="submit">
-          Submit
-        </button>
-      </form>
-      <img className="output"></img>
+      <div className="infMain">
+        <h1>
+          {" "}
+          <i>Run Inference on a Single Image: </i>
+        </h1>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <input type="file" className="fileInput" />
+          <button type="submit" className="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className="image">
+        <img className="output"></img>
+      </div>
     </div>
   );
 }

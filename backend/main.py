@@ -8,15 +8,14 @@ import cv2;
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
+import cv2;
+import numpy as np;
 
 class Data(BaseModel):
     user: str
 
 app = FastAPI();
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
     "http://localhost:3000",
 ]
 
@@ -32,7 +31,7 @@ model = torch.hub.load("ultralytics/yolov5", "yolov5x")
 
 
 @app.post("/api/image")
-async def main(image:UploadFile = File(...)):
+async def imageInfer(image:UploadFile = File(...)):
     print(image.file);
     im =  image.file.read()
     im = Image.open(io.BytesIO(im));
@@ -42,10 +41,14 @@ async def main(image:UploadFile = File(...)):
     res, im_jpeg = cv2.imencode(".jpeg", im)
     return StreamingResponse(io.BytesIO(im_jpeg.tobytes()), media_type="image/jpeg")
 
-class Data(BaseModel):
-    text:str
-    image: UploadFile = File(...)
-
+@app.post("/api/video")
+async def videoInfer(height:int = Form(...), width:int = Form(...), video:UploadFile = File(...)):
+    vid = await video.read();
+    cap = io.BytesIO(vid)
+    print(cap);
+    vid = (np.frombuffer(cap.getvalue(), dtype=np.uint8));
+    print(vid.shape);
+    return "Got Image";
 
 @app.post("/trial")
 async def trail(text: str= Form(...), data:UploadFile = File(...)):

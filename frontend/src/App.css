@@ -1,6 +1,23 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #503047;
+  color: white;
+}
+
+a {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.Links {
+  display: flex;
+}
+
+.Links > * {
+  margin: 1em;
 }
 
 .NavBar {
@@ -12,19 +29,22 @@ body {
   margin: 1em;
 }
 
-.title {
-  border: solid green;
-}
-
 .App {
   display: flex;
   flex-direction: column;
+  flex-basis: auto;
+  height: 100vh;
+  width: 100vw;
 }
 
 .Home {
   display: flex;
   margin: 1em;
   padding: 1em;
+}
+
+h1 {
+  font-size: 3em;
 }
 
 .HomeContent > .title {
@@ -40,16 +60,38 @@ body {
 }
 
 .Inference {
+  flex: 1;
   display: flex;
   margin: 1em;
   padding: 1em;
-  flex-direction: column;
 }
 
-.Inference > form {
+.Inference > .infMain > form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.Inference > .infMain {
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.Inference > .infMain > form > * {
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.Inference > .image {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+  padding: 1em;
+}
+
+.image > img {
+  object-fit: contain;
 }
 
 .fileInput ::-webkit-file-upload-button {
