@@ -23,21 +23,22 @@ function Inference() {
         if (img_to_display) {
           URL.revokeObjectURL(img_to_display);
         }
-        const img = document.getElementsByClassName("output")[0];
-        img.src = URL.createObjectURL(res);
-        document.body.appendChild(img);
+        const img_node = document.getElementsByClassName("output")[0];
+        img_node.src = URL.createObjectURL(res);
         setimg(!img);
       })
       .catch((err) => console.error(err));
   }
   return (
-    <div>
+    <div className="Inference">
       <h1> Run Inference on a Single Image</h1>
       <form onSubmit={(e) => onSubmit(e)}>
-        <input type="file" />
-        <button type="submit">Submit</button>
-        <img className="output"></img>
+        <input type="file" className="fileInput" />
+        <button type="submit" className="submit">
+          Submit
+        </button>
       </form>
+      <img className="output"></img>
     </div>
   );
 }

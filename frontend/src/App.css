@@ -23,19 +23,60 @@ body {
 
 .Home {
   display: flex;
-  flex-direction: column;
   margin: 1em;
   padding: 1em;
 }
 
-.Home > .title {
+.HomeContent > .title {
   font-size: 5em;
   border: none;
-  text-align: center;
+  text-align: left;
 }
 
-.Home > .desc {
+.HomeContent > .desc {
   font-size: 3em;
   font-weight: normal;
-  text-align: center;
+  text-align: justify;
+}
+
+.Inference {
+  display: flex;
+  margin: 1em;
+  padding: 1em;
+  flex-direction: column;
+}
+
+.Inference > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fileInput ::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.Inference > form > * {
+  padding: 1em;
+  margin: 1em;
+}
+
+.fileInput {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.submit {
+  border: solid black 0.1em;
+  border-radius: 1em;
+  background-color: white;
+}
+
+.submit:hover {
+  cursor: pointer;
 }
