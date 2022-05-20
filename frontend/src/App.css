@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.NavBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  margin: 1em;
+}
+
+.title {
+  border: solid green;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  padding: 1em;
+}
+
+.Home > .title {
+  font-size: 5em;
+  border: none;
+  text-align: center;
+}
+
+.Home > .desc {
+  font-size: 3em;
+  font-weight: normal;
+  text-align: center;
+}
