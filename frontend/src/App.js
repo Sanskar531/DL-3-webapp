@@ -1,7 +1,7 @@
 import "./App.css";
 import NavBar from "./Components/NavBar";
 import Home from "./Components/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Inference from "./Components/Inference";
 import RealTime from "./Components/RealTime";
 import Video from "./Components/Video";

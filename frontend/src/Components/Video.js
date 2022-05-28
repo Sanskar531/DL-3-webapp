@@ -1,35 +1,34 @@
 import { useState } from "react";
 function Video() {
-  const [img, setimg] = useState(false);
-  let img_to_display;
+  const [vid, setVid] = useState(false);
+  let vidToDisplay;
   function onSubmit(e) {
     e.preventDefault();
     const file = document.getElementsByTagName("input")[0].files[0];
-    const vid_url = URL.createObjectURL(file);
-    const vid_node = document.createElement("video");
-    vid_node.src = vid_url;
-    console.log("here?");
-    vid_node.addEventListener("loadedmetadata", (a) => {
-      let height = vid_node.videoHeight;
-      let width = vid_node.videoWidth;
-      URL.revokeObjectURL(vid_url);
-      const formData = new FormData();
-      formData.append("video", file);
-      formData.append("height", height);
-      formData.append("width", width);
-      const options = {
-        method: "POST",
-        body: formData,
-        header: {
-          "Content-type": "multipart/form-data",
-        },
-      };
-      console.log("what");
-      fetch("http://127.0.0.1:8000/api/video", options)
-        .then((res) => res.json())
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err));
-    });
+    const formData = new FormData();
+    formData.append("video", file);
+    const options = {
+      method: "POST",
+      body: formData,
+      header: {
+        "Content-type": "multipart/form-data",
+      },
+    };
+    fetch("http://127.0.0.1:8000/api/video", options)
+      .then((res) => res.blob())
+      .then((res) => {
+        if (vidToDisplay) {
+          URL.revokeObjectURL(vidToDisplay);
+        }
+        console.log("what");
+        vidToDisplay = URL.createObjectURL(res);
+        console.log(vidToDisplay);
+        const source = document.getElementsByClassName("source")[0];
+        source.setAttribute("src", vidToDisplay);
+        source.setAttribute("type", "video/mp4");
+        setVid(!vid);
+      })
+      .catch((err) => console.error(err));
   }
   return (
     <div className="Inference">
@@ -47,7 +46,9 @@ function Video() {
         </form>
       </div>
       <div className="image">
-        <img className="output"></img>
+        <video className="video" width="320" height="240" controls autoPlay>
+          <source className="source" src="x.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   );

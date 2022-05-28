@@ -44,7 +44,7 @@ function Inference() {
         </form>
       </div>
       <div className="image">
-        <img className="output"></img>
+        <img alt="output" className="output"></img>
       </div>
     </div>
   );

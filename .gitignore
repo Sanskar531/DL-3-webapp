@@ -2,3 +2,7 @@
 /frontend/node_modules
 /backend/yolov5x.pt
 /__pycache__
+/backend/*.mp4
+/frontend/src/Components/*.mp4
+/.vscode
+/backend/__pycache__
