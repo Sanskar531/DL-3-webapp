@@ -98,10 +98,13 @@ def progress_bar(current, total, bar_length=20):
 async def real_time(websocket: WebSocket):
     await websocket.accept()
     while True:
-        data = await websocket.receive_text();
-        im = io.BytesIO(base64.b64decode(data));
-        im = Image.open(im);
-        im_jpeg = inference(im);
-        await websocket.send_bytes(io.BytesIO(im_jpeg.tobytes()));
+        try:
+            data = await websocket.receive_text();
+            im = io.BytesIO(base64.b64decode(data));
+            im = Image.open(im);
+            im_jpeg = inference(im);
+            await websocket.send_bytes(io.BytesIO(im_jpeg.tobytes()));
+        except:
+            break;
 
         

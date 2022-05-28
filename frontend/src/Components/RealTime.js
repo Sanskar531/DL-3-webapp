@@ -3,7 +3,10 @@ import webcam from "webcamjs";
 function RealTime() {
   useEffect(() => {
     webcam.attach(".snapshot");
-    return () => webcam.reset();
+    return () => {
+      webcam.reset();
+      ws.close();
+    };
   });
   let url;
   const ws = new WebSocket("ws://localhost:8000/ws");
