@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 function NavBar({ navigate }) {
   const hover = {
     scale: 1.1,
-    y: -20,
+    color: "green",
   };
   const tap = {
     scale: 0.9,

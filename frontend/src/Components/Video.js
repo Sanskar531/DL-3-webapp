@@ -1,6 +1,4 @@
 import { useState } from "react";
-import videoFile from "./a.webm";
-import videoFile2 from "./c.webm";
 
 function Video() {
   const [vid, setVid] = useState("");
@@ -49,9 +47,6 @@ function Video() {
       <div className="videoContainer">
         <video
           className="video"
-          width="100%"
-          height="100%"
-          src={videoFile}
           type="video/webm"
           controls
           loop

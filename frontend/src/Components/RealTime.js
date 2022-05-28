@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import webcam from "webcamjs";
 function RealTime() {
-  const [stopStream, setStopStream] = useState(false);
-  function startStream() {
-    // const socket = new WebSocket("ws://localhost:8000/ws");
-    // socket.onmessage(async (res) => {
-    //   const imgToShow = await res.data.blob();
-    // });
-    webcam.attach(".webcam");
+  useEffect(() => {
+    webcam.attach(".snapshot");
+    return () => webcam.reset();
+  });
+  let url;
+  const ws = new WebSocket("ws://localhost:8000/ws");
+  ws.onmessage = function (event) {
+    if (url !== "") {
+      URL.revokeObjectURL(url);
+    }
+    var img = document.getElementById("videoDisplayer");
+    const src = URL.createObjectURL(event.data);
+    img.src = src;
+    url = src;
+    startStream();
+  };
+  function sendMsg(event) {
+    webcam.attach();
+    var input = document.getElementById("fileInput");
+    ws.send(input.files[0]);
+    event.preventDefault();
   }
-  function clickPicture() {
-    webcam.snap((url) => {
-      const img = document.getElementsByTagName("img")[0];
-      webcam.upload(url, "http://127.0.0.1:8000/api/image", (res) => {
-        console.log(res);
-      });
+  async function startStream() {
+    // await webcam.attach(".snapshot");
+    webcam.snap(async (uri) => {
+      console.log(uri);
+      ws.send(uri.replace(/^data\:image\/\w+\;base64\,/, ""));
     });
   }
   const style = {
@@ -24,10 +37,11 @@ function RealTime() {
   return (
     <div>
       <div>
-        <button onClick={startStream}> Start stream with camera </button>
-        <div className="webcam" style={style}></div>
-        <img></img>
-        <button onClick={clickPicture}>clickPicture</button>
+        <input type="file" id="fileInput" />
+        <button onClick={(e) => sendMsg(e)}>Send </button>
+        <img id="videoDisplayer" />
+        <div className="snapshot" style={style} />
+        <button onClick={startStream} />
       </div>
     </div>
   );

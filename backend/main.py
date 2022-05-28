@@ -32,12 +32,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = torch.hub.load("ultralytics/yolov5", "yolov5x")
+model = torch.hub.load("ultralytics/yolov5", "yolov5n")
 
 
 @app.post("/api/image")
-async def imageInfer(webcam: UploadFile = File(...)):
-    im = webcam.file.read()
+async def imageInfer(image: UploadFile = File(...)):
+    im = image.file.read()
     im = Image.open(io.BytesIO(im))
     im_jpeg = inference(im);
     return StreamingResponse(io.BytesIO(im_jpeg.tobytes()), media_type="image/jpeg")
@@ -97,13 +97,11 @@ def progress_bar(current, total, bar_length=20):
 @app.websocket("/ws")
 async def real_time(websocket: WebSocket):
     await websocket.accept()
-    try:
-        while True:
-            data = await websocket.receive_bytes()
-            im = Image.open(data)
-            result_im = inference(im);
-            await websocket.send_bytes(base64.b64encode(result_im).decode("utf-8"));
-    except Exception as e:
-        print(e)
-    finally:
-        websocket.close()
+    while True:
+        data = await websocket.receive_text();
+        im = io.BytesIO(base64.b64decode(data));
+        im = Image.open(im);
+        im_jpeg = inference(im);
+        await websocket.send_bytes(io.BytesIO(im_jpeg.tobytes()));
+
+        

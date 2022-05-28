@@ -1,12 +1,23 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #503047;
+  background-color: #8d6346;
   color: white;
+  font-size: 12px;
+}
+
+.body {
+  background-color: white;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  border-radius: 1rem;
+  color: #0c1618;
 }
 
 a {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   text-decoration: none;
   color: white;
   cursor: pointer;
@@ -17,7 +28,7 @@ a {
 }
 
 .Links > * {
-  margin: 1em;
+  margin: 1rem;
 }
 
 .NavBar {
@@ -25,8 +36,8 @@ a {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1em;
-  margin: 1em;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 .App {
@@ -39,33 +50,37 @@ a {
 
 .Home {
   display: flex;
-  margin: 1em;
-  padding: 1em;
+  margin: 1rem;
+  padding: 1rem;
+  align-items: center;
 }
 
 h1 {
-  font-size: 3em;
-}
-
-.HomeContent > .title {
-  font-size: 5em;
-  border: none;
-  text-align: left;
+  font-size: 3rem;
 }
 
 .HomeContent > .desc {
-  font-size: 3em;
+  font-size: 2rem;
   font-weight: normal;
   text-align: justify;
 }
 
-.Inference {
-  flex: 1;
-  display: flex;
-  margin: 1em;
-  padding: 1em;
+.Home > * {
+  padding: 1rem;
+  margin: 1rem;
 }
 
+.Home > .gifs > * {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.Inference {
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+  flex: 1;
+}
 .Inference > .infMain > form {
   display: flex;
   flex-direction: column;
@@ -73,25 +88,36 @@ h1 {
 }
 
 .Inference > .infMain {
-  flex-shrink: 0;
-  flex-grow: 1;
+  flex: 1;
+}
+
+.Inference > * {
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .Inference > .infMain > form > * {
-  padding: 0.5em;
-  margin: 0.5em;
+  padding: 0.5rem;
+  margin: 0.5rem;
 }
 
 .Inference > .image {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin: 1em;
-  padding: 1em;
+  align-items: center;
+}
+
+.image {
+  background-color: black;
 }
 
 .image > img {
   object-fit: contain;
+
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .fileInput ::-webkit-file-upload-button {
@@ -99,8 +125,24 @@ h1 {
 }
 
 .Inference > form > * {
-  padding: 1em;
-  margin: 1em;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.videoContainer {
+  padding: 1rem;
+  margin: 1rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.videoContainer > video {
+  object-fit: contain;
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .fileInput {
@@ -114,8 +156,9 @@ h1 {
 }
 
 .submit {
-  border: solid black 0.1em;
-  border-radius: 1em;
+  border: solid black 0.1rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
   background-color: white;
 }
 
@@ -123,11 +166,9 @@ h1 {
   cursor: pointer;
 }
 
-.videoContainer {
-  padding: 1em;
-  margin: 1em;
-  flex-grow: 1;
-  padding-top: 10em;
+.gifs {
+  display: flex;
+  flex-direction: column;
 }
 
 video {

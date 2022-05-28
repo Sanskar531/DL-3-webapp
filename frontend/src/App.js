@@ -12,14 +12,16 @@ function App() {
   return (
     <div className="App">
       <NavBar navigate={navigate} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/inference/">
-          <Route path="image/" element={<Inference />} />
-          <Route path="video/" element={<Video />} />
-          <Route path="real-time/" element={<RealTime />} />
-        </Route>
-      </Routes>
+      <div className="body">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/inference/">
+            <Route path="image/" element={<Inference />} />
+            <Route path="video/" element={<Video />} />
+            <Route path="real-time/" element={<RealTime />} />
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }

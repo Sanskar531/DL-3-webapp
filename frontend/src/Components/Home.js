@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="Home">
       <div className="HomeContent">
-        <h1 className="title">
+        <h1>
           <i>Home:</i>
         </h1>
         <h4 className="desc">
@@ -16,7 +16,7 @@ function Home() {
           <b>Sarrah Barodawola</b>.
         </h4>
       </div>
-      <div>
+      <div className="gifs">
         <img src={gif1} />
         <img src={gif2} />
       </div>

@@ -1,5 +1,13 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 function Inference() {
+  const hover = {
+    scale: 1.1,
+    color: "green",
+  };
+  const tap = {
+    scale: 0.9,
+  };
   const [img, setimg] = useState(false);
   let img_to_display;
   function onSubmit(e) {
@@ -7,7 +15,7 @@ function Inference() {
 
     const formData = new FormData();
     formData.append(
-      "webcam",
+      "image",
       document.getElementsByTagName("input")[0].files[0]
     );
     const options = {
@@ -18,10 +26,7 @@ function Inference() {
       },
     };
     fetch("http://127.0.0.1:8000/api/image", options)
-      .then((res) => {
-        console.log(res);
-        return res.blob();
-      })
+      .then((res) => res.blob())
       .then((res) => {
         if (img_to_display) {
           URL.revokeObjectURL(img_to_display);
@@ -41,9 +46,14 @@ function Inference() {
         </h1>
         <form onSubmit={(e) => onSubmit(e)}>
           <input type="file" className="fileInput" />
-          <button type="submit" className="submit">
+          <motion.button
+            type="submit"
+            className="submit"
+            whileHover={hover}
+            whileTap={tap}
+          >
             Submit
-          </button>
+          </motion.button>
         </form>
       </div>
       <div className="image">
