@@ -122,3 +122,14 @@ h1 {
 .submit:hover {
   cursor: pointer;
 }
+
+.videoContainer {
+  padding: 1em;
+  margin: 1em;
+  flex-grow: 1;
+  padding-top: 10em;
+}
+
+video {
+  background-color: black;
+}

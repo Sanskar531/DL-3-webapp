@@ -1,8 +1,11 @@
 /backend/yolov5
 /frontend/node_modules
-/backend/yolov5x.pt
+/backend/*.pt
 /__pycache__
 /backend/*.mp4
+/backend/*.avi
+/backend/*.webm
 /frontend/src/Components/*.mp4
+/frontend/src/Components/*.webm
 /.vscode
 /backend/__pycache__

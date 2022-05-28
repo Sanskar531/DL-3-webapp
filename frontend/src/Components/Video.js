@@ -1,7 +1,9 @@
 import { useState } from "react";
+import videoFile from "./a.webm";
+import videoFile2 from "./c.webm";
+
 function Video() {
-  const [vid, setVid] = useState(false);
-  let vidToDisplay;
+  const [vid, setVid] = useState("");
   function onSubmit(e) {
     e.preventDefault();
     const file = document.getElementsByTagName("input")[0].files[0];
@@ -17,16 +19,15 @@ function Video() {
     fetch("http://127.0.0.1:8000/api/video", options)
       .then((res) => res.blob())
       .then((res) => {
-        if (vidToDisplay) {
-          URL.revokeObjectURL(vidToDisplay);
+        if (vid !== "") {
+          URL.revokeObjectURL(vid);
         }
-        console.log("what");
-        vidToDisplay = URL.createObjectURL(res);
-        console.log(vidToDisplay);
-        const source = document.getElementsByClassName("source")[0];
+        const vidToDisplay = URL.createObjectURL(res);
+        const source = document.getElementsByClassName("video")[0];
         source.setAttribute("src", vidToDisplay);
-        source.setAttribute("type", "video/mp4");
-        setVid(!vid);
+        source.setAttribute("type", "video/webm");
+        setVid(vidToDisplay);
+        source.play();
       })
       .catch((err) => console.error(err));
   }
@@ -45,10 +46,17 @@ function Video() {
           </button>
         </form>
       </div>
-      <div className="image">
-        <video className="video" width="320" height="240" controls autoPlay>
-          <source className="source" src="x.mp4" type="video/mp4" />
-        </video>
+      <div className="videoContainer">
+        <video
+          className="video"
+          width="100%"
+          height="100%"
+          src={videoFile}
+          type="video/webm"
+          controls
+          loop
+          autoPlay
+        ></video>
       </div>
     </div>
   );

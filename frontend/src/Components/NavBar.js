@@ -24,7 +24,7 @@ function NavBar({ navigate }) {
           whileHover={hover}
           whileTap={tap}
         >
-          Run Inference on a Single Image
+          Image Inference
         </motion.a>
         <motion.a
           onClick={() => navigate("/inference/video")}
