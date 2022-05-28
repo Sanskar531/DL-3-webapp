@@ -36,8 +36,8 @@ model = torch.hub.load("ultralytics/yolov5", "yolov5x")
 
 
 @app.post("/api/image")
-async def imageInfer(image: UploadFile = File(...)):
-    im = image.file.read()
+async def imageInfer(webcam: UploadFile = File(...)):
+    im = webcam.file.read()
     im = Image.open(io.BytesIO(im))
     im_jpeg = inference(im);
     return StreamingResponse(io.BytesIO(im_jpeg.tobytes()), media_type="image/jpeg")

@@ -1,3 +1,6 @@
+import gif1 from "./assets/accident1.gif";
+import gif2 from "./assets/accident2.gif";
+
 function Home() {
   return (
     <div className="Home">
@@ -10,10 +13,13 @@ function Home() {
           Learning and Convolutional Neural Networks where we are trying to
           detect car crash collision. Our team consists of{" "}
           <b>Sanskar Gauchan</b>, <b>Ahmed Khurseed</b> and{" "}
-          <b>Sarrah Baradwola</b>.
+          <b>Sarrah Barodawola</b>.
         </h4>
       </div>
-      <div>NEWWW</div>
+      <div>
+        <img src={gif1} />
+        <img src={gif2} />
+      </div>
     </div>
   );
 }

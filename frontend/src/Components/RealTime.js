@@ -1,41 +1,33 @@
+import { useState } from "react";
+import webcam from "webcamjs";
 function RealTime() {
-  async function video_listener() {
-    let camera_button = document.querySelector("#start-camera");
-    let video = document.querySelector("#video");
-    let click_button = document.querySelector("#click-photo");
-    let canvas = document.querySelector("#canvas");
-
-    let stream = await navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: false,
+  const [stopStream, setStopStream] = useState(false);
+  function startStream() {
+    // const socket = new WebSocket("ws://localhost:8000/ws");
+    // socket.onmessage(async (res) => {
+    //   const imgToShow = await res.data.blob();
+    // });
+    webcam.attach(".webcam");
+  }
+  function clickPicture() {
+    webcam.snap((url) => {
+      const img = document.getElementsByTagName("img")[0];
+      webcam.upload(url, "http://127.0.0.1:8000/api/image", (res) => {
+        console.log(res);
+      });
     });
-    video.srcObject = stream;
   }
-
-  function click_listener() {
-    let camera_button = document.querySelector("#start-camera");
-    let video = document.querySelector("#video");
-    let click_button = document.querySelector("#click-photo");
-    let canvas = document.querySelector("#canvas");
-
-    canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    let image_data_url = canvas.toDataURL("image/jpeg");
-    Webcam;
-    // data url of the image
-    console.log(image_data_url);
-  }
+  const style = {
+    width: "320px",
+    height: "240px",
+  };
   return (
     <div>
       <div>
-        <button id="start-camera" onClick={video_listener}>
-          Start Camera
-        </button>
-        <video id="video" width="320" height="240" autoPlay></video>
-        <button id="click-photo" onClick={click_listener}>
-          Click Photo
-        </button>
-        <canvas id="canvas" width="320" height="240"></canvas>
+        <button onClick={startStream}> Start stream with camera </button>
+        <div className="webcam" style={style}></div>
+        <img></img>
+        <button onClick={clickPicture}>clickPicture</button>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ function Inference() {
 
     const formData = new FormData();
     formData.append(
-      "image",
+      "webcam",
       document.getElementsByTagName("input")[0].files[0]
     );
     const options = {
@@ -18,7 +18,10 @@ function Inference() {
       },
     };
     fetch("http://127.0.0.1:8000/api/image", options)
-      .then((res) => res.blob())
+      .then((res) => {
+        console.log(res);
+        return res.blob();
+      })
       .then((res) => {
         if (img_to_display) {
           URL.revokeObjectURL(img_to_display);
