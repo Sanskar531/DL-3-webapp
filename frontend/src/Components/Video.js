@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import transitions from "./animations.js";
 
 function Video() {
   const [vid, setVid] = useState("");
@@ -33,7 +35,13 @@ function Video() {
       .catch((err) => console.error(err));
   }
   return (
-    <div className="Inference">
+    <motion.div
+      className="Inference"
+      variants={transitions.pageTransitions}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <div className="infMain">
         <h1>
           {" "}
@@ -41,7 +49,7 @@ function Video() {
         </h1>
         <h4>Note: Takes longer to process</h4>
         <form onSubmit={(e) => onSubmit(e)}>
-          <input type="file" className="fileInput" />
+          <input type="file" className="fileInput" id="files" />
           <button type="submit" className="submit">
             Submit
           </button>
@@ -51,7 +59,7 @@ function Video() {
         <h1>Inferred Video:</h1>
         <video className="video" type="video/webm"></video>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

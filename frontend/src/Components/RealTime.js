@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import webcam from "webcamjs";
+import transitions from "./animations.js";
 function RealTime() {
   useEffect(() => {
     webcam.attach(".snapshot");
@@ -30,7 +32,13 @@ function RealTime() {
     height: "360px",
   };
   return (
-    <div className="Inference">
+    <motion.div
+      className="Inference"
+      variants={transitions.pageTransitions}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <div className="infMain">
         <h1>Run Real-time Inference</h1>
         <button onClick={startStream}>Start Inference</button>
@@ -46,7 +54,7 @@ function RealTime() {
           src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

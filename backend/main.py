@@ -1,7 +1,6 @@
 import io
 
 import torch
-torch.device("cpu");
 from fastapi import FastAPI, File, UploadFile, WebSocket
 from starlette.responses import StreamingResponse
 from PIL import Image
@@ -32,8 +31,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = torch.hub.load('ultralytics/yolov5', "custom", path="./bestopy.pt", force_reload=True)
-model.conf =0.5;
+model = torch.hub.load('ultralytics/yolov5', "custom", path="./last.pt", force_reload=True, device = torch.device("cpu"));
+model.conf =0.7;
 
 @app.post("/api/image")
 async def imageInfer(image: UploadFile = File(...)):

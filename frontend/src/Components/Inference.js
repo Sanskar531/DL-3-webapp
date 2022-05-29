@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import transistions from "./animations.js";
+
 function Inference() {
   const hover = {
     scale: 1.1,
@@ -38,7 +40,13 @@ function Inference() {
       .catch((err) => console.error(err));
   }
   return (
-    <div className="Inference">
+    <motion.div
+      className="Inference"
+      variants={transistions.pageTransitions}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <div className="infMain">
         <h1>
           {" "}
@@ -58,12 +66,13 @@ function Inference() {
       </div>
       <div className="image">
         <img
+          key="inferredImage"
           alt="output"
           className="output"
           src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
         ></img>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

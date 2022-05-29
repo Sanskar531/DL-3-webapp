@@ -1,11 +1,18 @@
 import gif1 from "./assets/accident1.gif";
 import gif2 from "./assets/accident2.gif";
-import { motion } from "framer-motion";
+import transitions from "./animations.js";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Home() {
   return (
-    <div className="Home">
-      <div className="HomeContent">
+    <motion.div
+      className="Home"
+      variants={transitions.pageTransitions}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <div key="HomeContent" className="HomeContent">
         <h1>
           <motion.i>Home:</motion.i>
         </h1>
@@ -21,7 +28,7 @@ function Home() {
         <img src={gif1} />
         <img src={gif2} />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
