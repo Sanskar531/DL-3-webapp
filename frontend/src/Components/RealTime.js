@@ -11,40 +11,40 @@ function RealTime() {
   let url;
   const ws = new WebSocket("ws://localhost:8000/ws");
   ws.onmessage = function (event) {
+    var img = document.getElementById("videoDisplayer");
+    const src = URL.createObjectURL(event.data);
     if (url !== "") {
       URL.revokeObjectURL(url);
     }
-    var img = document.getElementById("videoDisplayer");
-    const src = URL.createObjectURL(event.data);
     img.src = src;
     url = src;
     startStream();
   };
-  function sendMsg(event) {
-    webcam.attach();
-    var input = document.getElementById("fileInput");
-    ws.send(input.files[0]);
-    event.preventDefault();
-  }
   async function startStream() {
-    // await webcam.attach(".snapshot");
     webcam.snap(async (uri) => {
-      console.log(uri);
       ws.send(uri.replace(/^data\:image\/\w+\;base64\,/, ""));
     });
   }
   const style = {
-    width: "320px",
-    height: "240px",
+    width: "480px",
+    height: "360px",
   };
   return (
-    <div>
-      <div>
-        <input type="file" id="fileInput" />
-        <button onClick={(e) => sendMsg(e)}>Send </button>
-        <img id="videoDisplayer" />
+    <div className="Inference">
+      <div className="infMain">
+        <h1>Run Real-time Inference</h1>
+        <button onClick={startStream}>Start Inference</button>
+      </div>
+      <div className="LiveFeedContainer">
+        <h1>Live Feed:</h1>
         <div className="snapshot" style={style} />
-        <button onClick={startStream} />
+        <h1>Inferred Live Feed:</h1>
+        <img
+          id="videoDisplayer"
+          alt="videoDisplayer"
+          style={style}
+          src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+        />
       </div>
     </div>
   );

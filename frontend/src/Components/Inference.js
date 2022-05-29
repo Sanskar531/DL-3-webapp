@@ -57,7 +57,11 @@ function Inference() {
         </form>
       </div>
       <div className="image">
-        <img alt="output" className="output"></img>
+        <img
+          alt="output"
+          className="output"
+          src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+        ></img>
       </div>
     </div>
   );

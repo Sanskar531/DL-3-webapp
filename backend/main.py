@@ -1,18 +1,18 @@
 import io
-from unittest import result
 
 import torch
-from fastapi import FastAPI, File, UploadFile, Request, Body, Form, WebSocket
+torch.device("cpu");
+from fastapi import FastAPI, File, UploadFile, WebSocket
 from starlette.responses import StreamingResponse
 from PIL import Image
 import cv2
 from starlette.middleware.cors import CORSMiddleware
-from fastapi.encoders import jsonable_encoder
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import cv2
-import numpy as np
-import base64;
+import base64
+
+from zmq import device;
 
 
 class Data(BaseModel):
@@ -32,8 +32,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = torch.hub.load("ultralytics/yolov5", "yolov5n")
-
+model = torch.hub.load('ultralytics/yolov5', "custom", path="./bestopy.pt", force_reload=True)
+model.conf =0.5;
 
 @app.post("/api/image")
 async def imageInfer(image: UploadFile = File(...)):
@@ -72,7 +72,6 @@ async def videoInfer(video: UploadFile = File(...)):
             break
         im.append(frame)
     cap.release()
-    im = im[:100] ;
     for c,i in enumerate(im):
         res_im = inference(i, encode=False);
         result.append(res_im)

@@ -24,6 +24,9 @@ function Video() {
         const source = document.getElementsByClassName("video")[0];
         source.setAttribute("src", vidToDisplay);
         source.setAttribute("type", "video/webm");
+        source.setAttribute("loop", true);
+        source.setAttribute("autoPlay", true);
+        source.setAttribute("controls", true);
         setVid(vidToDisplay);
         source.play();
       })
@@ -45,13 +48,8 @@ function Video() {
         </form>
       </div>
       <div className="videoContainer">
-        <video
-          className="video"
-          type="video/webm"
-          controls
-          loop
-          autoPlay
-        ></video>
+        <h1>Inferred Video:</h1>
+        <video className="video" type="video/webm"></video>
       </div>
     </div>
   );

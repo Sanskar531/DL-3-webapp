@@ -1,12 +1,13 @@
 import gif1 from "./assets/accident1.gif";
 import gif2 from "./assets/accident2.gif";
+import { motion } from "framer-motion";
 
 function Home() {
   return (
     <div className="Home">
       <div className="HomeContent">
         <h1>
-          <i>Home:</i>
+          <motion.i>Home:</motion.i>
         </h1>
         <h4 className="desc">
           Welcome to our website! This is our Final project for 42028 Deep
