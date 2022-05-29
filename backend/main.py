@@ -31,7 +31,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = torch.hub.load('ultralytics/yolov5', "custom", path="./last.pt", force_reload=True, device = torch.device("cpu"));
+model = torch.hub.load('ultralytics/yolov5', "custom", path="./last.pt", force_reload=True);
 model.conf =0.7;
 
 @app.post("/api/image")
@@ -71,7 +71,6 @@ async def videoInfer(video: UploadFile = File(...)):
             break
         im.append(frame)
     cap.release()
-    im = im[:10];
     for c,i in enumerate(im):
         res_im = inference(i, encode=False);
         result.append(res_im)

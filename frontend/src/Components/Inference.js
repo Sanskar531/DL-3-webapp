@@ -2,15 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import transistions from "./animations.js";
 import Button from "./Button.js";
+import send from "./assets/send.svg";
+import image from "./assets/image.svg";
 
 function Inference() {
-  const hover = {
-    scale: 1.1,
-    color: "green",
-  };
-  const tap = {
-    scale: 0.9,
-  };
   const [img, setimg] = useState(false);
   let img_to_display;
   function onSubmit(e) {
@@ -53,18 +48,20 @@ function Inference() {
           {" "}
           <i>Run Inference on a Single Image: </i>
         </h1>
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={(e) => onSubmit(e)} className="form">
           <input type="file" id="files" hidden />
-          <motion.label
-            htmlFor="files"
-            className="fileInput"
-            variants={transistions.buttonAnimations}
-            whileHover="hover"
-            whileTap="tap"
-          >
-            Upload
-          </motion.label>
-          <Button text="Predict" />
+          <div className="FileContainer">
+            <motion.label
+              htmlFor="files"
+              className="fileInput"
+              variants={transistions.buttonAnimations}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <img alt="image" src={image} />
+            </motion.label>
+            <Button text={<img alt="send" src={send} />} />
+          </div>
         </form>
       </div>
       <div className="image">

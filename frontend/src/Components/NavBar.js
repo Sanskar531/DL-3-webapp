@@ -4,10 +4,10 @@ import transitions from "./animations.js";
 function NavBar({ navigate }) {
   return (
     <div className="NavBar">
-      <h1 className="title">
+      <h2 className="title">
         RAD
         <br /> SAS
-      </h1>
+      </h2>
       <div className="Links">
         <motion.a
           onClick={() => navigate("/")}
@@ -16,6 +16,22 @@ function NavBar({ navigate }) {
           whileTap="tap"
         >
           Home
+        </motion.a>
+        <motion.a
+          onClick={() => navigate("/aboutus")}
+          variants={transitions.buttonAnimations}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          About us
+        </motion.a>
+        <motion.a
+          onClick={() => navigate("/contactus")}
+          variants={transitions.buttonAnimations}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          Contact us
         </motion.a>
         <motion.a
           onClick={() => navigate("/inference/image")}

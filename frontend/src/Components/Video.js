@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import transitions from "./animations.js";
 import Button from "./Button.js";
+import send from "./assets/send.svg";
+import film from "./assets/film.svg";
 
 function Video({ loadingHandler }) {
   const [vid, setVid] = useState("");
@@ -51,18 +53,20 @@ function Video({ loadingHandler }) {
           <i>Run Inference on a Video: </i>
         </h1>
         <h4>Note: Takes longer to process</h4>
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={(e) => onSubmit(e)} className="form">
           <input type="file" id="files" hidden />
-          <motion.label
-            htmlFor="files"
-            className="fileInput"
-            variants={transitions.buttonAnimations}
-            whileHover="hover"
-            whileTap="tap"
-          >
-            Upload
-          </motion.label>
-          <Button text="Predict" />
+          <div className="FileContainer">
+            <motion.label
+              htmlFor="files"
+              className="fileInput"
+              variants={transitions.buttonAnimations}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <img alt="film" src={film} />
+            </motion.label>
+            <Button text={<img alt="send" src={send} />} />
+          </div>
         </form>
       </div>
       <div className="videoContainer">

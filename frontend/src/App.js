@@ -10,6 +10,8 @@ import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import Overlay from "./Components/Overlay.js";
+import Aboutus from "./Components/Aboutus";
+import Contactus from "./Components/Contactus";
 
 function App() {
   const navigate = useNavigate();
@@ -17,11 +19,15 @@ function App() {
   const [loading, setLoading] = useState(false);
   return (
     <div className="App">
-      <NavBar navigate={navigate} />
+      <div className="NavContainer">
+        <NavBar navigate={navigate} />
+      </div>
       <div className="body">
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
+            <Route path="/aboutus" element={<Aboutus />} />
+            <Route path="/contactus" element={<Contactus />} />
             <Route path="/inference/">
               <Route path="image/" element={<Inference />} />
               <Route
