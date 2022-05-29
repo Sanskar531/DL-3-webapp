@@ -4,4 +4,13 @@ const pageTransitions = {
   exit: { opacity: 0 },
 };
 
-export default { pageTransitions: pageTransitions };
+const buttonAnimations = {
+  hover: {
+    scale: 1.1,
+  },
+  tap: {
+    scale: 0.9,
+  },
+};
+
+export default { pageTransitions, buttonAnimations };

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import transistions from "./animations.js";
+import Button from "./Button.js";
 
 function Inference() {
   const hover = {
@@ -53,15 +54,17 @@ function Inference() {
           <i>Run Inference on a Single Image: </i>
         </h1>
         <form onSubmit={(e) => onSubmit(e)}>
-          <input type="file" className="fileInput" />
-          <motion.button
-            type="submit"
-            className="submit"
-            whileHover={hover}
-            whileTap={tap}
+          <input type="file" id="files" hidden />
+          <motion.label
+            htmlFor="files"
+            className="fileInput"
+            variants={transistions.buttonAnimations}
+            whileHover="hover"
+            whileTap="tap"
           >
-            Submit
-          </motion.button>
+            Upload
+          </motion.label>
+          <Button text="Predict" />
         </form>
       </div>
       <div className="image">

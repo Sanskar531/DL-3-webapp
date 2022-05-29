@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import transitions from "./animations.js";
+import Button from "./Button.js";
 
-function Video() {
+function Video({ loadingHandler }) {
   const [vid, setVid] = useState("");
   function onSubmit(e) {
     e.preventDefault();
+    loadingHandler(true);
     const file = document.getElementsByTagName("input")[0].files[0];
     const formData = new FormData();
     formData.append("video", file);
@@ -23,7 +25,7 @@ function Video() {
           URL.revokeObjectURL(vid);
         }
         const vidToDisplay = URL.createObjectURL(res);
-        const source = document.getElementsByClassName("video")[0];
+        const source = document.getElementById("video");
         source.setAttribute("src", vidToDisplay);
         source.setAttribute("type", "video/webm");
         source.setAttribute("loop", true);
@@ -31,6 +33,7 @@ function Video() {
         source.setAttribute("controls", true);
         setVid(vidToDisplay);
         source.play();
+        loadingHandler(false);
       })
       .catch((err) => console.error(err));
   }
@@ -49,15 +52,22 @@ function Video() {
         </h1>
         <h4>Note: Takes longer to process</h4>
         <form onSubmit={(e) => onSubmit(e)}>
-          <input type="file" className="fileInput" id="files" />
-          <button type="submit" className="submit">
-            Submit
-          </button>
+          <input type="file" id="files" hidden />
+          <motion.label
+            htmlFor="files"
+            className="fileInput"
+            variants={transitions.buttonAnimations}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            Upload
+          </motion.label>
+          <Button text="Predict" />
         </form>
       </div>
       <div className="videoContainer">
         <h1>Inferred Video:</h1>
-        <video className="video" type="video/webm"></video>
+        <video id="video" type="video/webm"></video>
       </div>
     </motion.div>
   );

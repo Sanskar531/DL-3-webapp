@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import webcam from "webcamjs";
 import transitions from "./animations.js";
 function RealTime() {
+  let streaming = false;
   useEffect(() => {
     webcam.attach(".snapshot");
-    return () => {
+    return function cleanup() {
       webcam.reset();
       ws.close();
     };
@@ -20,13 +21,25 @@ function RealTime() {
     }
     img.src = src;
     url = src;
-    startStream();
+    if (streaming) {
+      startStream();
+    }
   };
   async function startStream() {
+    if (!streaming) {
+      streaming = true;
+      document.getElementById("streamButton").innerText = "Stop Streaming";
+    }
     webcam.snap(async (uri) => {
       ws.send(uri.replace(/^data\:image\/\w+\;base64\,/, ""));
     });
   }
+
+  function stopStream() {
+    streaming = false;
+    document.getElementById("streamButton").innerText = "Start Streaming";
+  }
+
   const style = {
     width: "480px",
     height: "360px",
@@ -41,7 +54,12 @@ function RealTime() {
     >
       <div className="infMain">
         <h1>Run Real-time Inference</h1>
-        <button onClick={startStream}>Start Inference</button>
+        <button
+          id="streamButton"
+          onClick={() => (streaming ? stopStream() : startStream())}
+        >
+          Start Streaming
+        </button>
       </div>
       <div className="LiveFeedContainer">
         <h1>Live Feed:</h1>

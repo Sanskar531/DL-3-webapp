@@ -1,9 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Tiro+Kannada&display=swap");
 body {
   margin: 0;
   padding: 0;
   background-color: #242f9b;
   color: #dbdffd;
   font-size: 12px;
+}
+
+.title {
+  text-align: center;
+  border: solid white 1rem;
+  padding: 0.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .body {
@@ -28,6 +37,7 @@ a {
 
 .Links > * {
   margin: 1rem;
+  flex-shrink: 1;
 }
 
 .LiveFeedContainer {
@@ -51,6 +61,8 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
   margin: 1rem;
   border-radius: 1rem;
 }
@@ -94,6 +106,7 @@ h1 {
   margin: 1rem;
   padding: 1rem;
   flex: 1;
+  flex-wrap: wrap;
 }
 .Inference > .infMain > form {
   display: flex;
@@ -129,8 +142,19 @@ h1 {
   max-height: 100%;
 }
 
-.fileInput ::-webkit-file-upload-button {
-  visibility: hidden;
+.overlay {
+  position: fixed;
+  z-index: 99;
+  height: 100vh;
+  background-color: #000000e1;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Inference > form > * {
@@ -145,20 +169,26 @@ h1 {
   display: flex;
   flex-direction: column;
 }
-.videoContainer > video {
+
+#video {
+  width: 100%;
+  height: 100%;
+}
+
+.snapshot,
+#videoDisplayer {
   object-fit: contain;
   max-width: 100%;
   max-height: 100%;
-  background-color: black;
+  background-color: white;
+  border-radius: 1rem;
 }
 
 .fileInput {
-  border: 2px solid gray;
-  color: gray;
-  background-color: white;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 20px;
+  background-color: black;
+  padding: 0.75rem !important;
+  border-radius: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -167,12 +197,18 @@ h1 {
   flex-direction: column;
 }
 
+button,
+label {
+  cursor: pointer;
+}
+
 button {
   background-color: black;
   color: white;
   text-decoration: none;
   border: none;
-  font-size: 2rem;
-  padding: 1rem !important;
+  font-size: 1.5rem;
+  padding: 0.75rem !important;
   border-radius: 1rem;
+  font-weight: bold;
 }
