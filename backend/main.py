@@ -31,8 +31,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = torch.hub.load('ultralytics/yolov5', "custom", path="./last.pt", force_reload=True);
-model.conf =0.7;
+model = torch.hub.load('ultralytics/yolov5', "custom", path="./best.pt", force_reload=True);
+model.conf = 0.7;
 
 @app.post("/api/image")
 async def imageInfer(image: UploadFile = File(...)):

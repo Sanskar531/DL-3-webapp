@@ -4,10 +4,10 @@ function Profile({ name, email, img }) {
       <img
         src={img}
         className="ProfilePic"
-        style={name == "Sarrah Barodawala" ? { width: "65%" } : {}}
+        style={name == "Sarrah Barodawala" ? { width: "50%" } : {}}
       />
-      <h2>{name}</h2>
-      <h2>{email}</h2>
+      <h1>{name}</h1>
+      <h1 style={{ fontSize: "1.5rem" }}>{email}</h1>
     </div>
   );
 }

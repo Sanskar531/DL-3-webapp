@@ -125,7 +125,7 @@ a {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 .HomeContent {
@@ -135,7 +135,7 @@ h1 {
 }
 
 .HomeContent > .desc {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: normal;
   text-align: justify;
 }

@@ -27,17 +27,11 @@ function Contactus() {
             email={
               <span>
                 Email:{" "}
-                <a
-                  style={{
-                    all: "initial",
-                    color: "white",
-                    fontFamily: "inherit",
-                    fontWeight: "bold",
-                  }}
-                  href="mailto: Sanskar.Gauchan-1@student.uts.edu.au"
-                >
-                  Sanskar.Gauchan-1@student.uts.edu.au
-                </a>
+                <i>
+                  <a href="mailto: Sanskar.Gauchan-1@student.uts.edu.au">
+                    Sanskar.Gauchan-1@student.uts.edu.au
+                  </a>
+                </i>
               </span>
             }
             img={Sanskar}
@@ -47,17 +41,11 @@ function Contactus() {
             email={
               <span>
                 Email:{" "}
-                <a
-                  style={{
-                    all: "initial",
-                    color: "white",
-                    fontFamily: "inherit",
-                    fontWeight: "bold",
-                  }}
-                  href="mailto: ahmed.khursheed-1@student.uts.edu.au"
-                >
-                  ahmed.khursheed-1@student.uts.edu.au
-                </a>
+                <i>
+                  <a href="mailto: ahmed.khursheed-1@student.uts.edu.au">
+                    ahmed.khursheed-1@student.uts.edu.au
+                  </a>
+                </i>
               </span>
             }
             img={Ahmed}
@@ -67,17 +55,11 @@ function Contactus() {
             email={
               <span>
                 Email:{" "}
-                <a
-                  style={{
-                    all: "initial",
-                    color: "white",
-                    fontFamily: "inherit",
-                    fontWeight: "bold",
-                  }}
-                  href="mailto: sarrah.barodawala@student.uts.edu.au"
-                >
-                  sarrah.barodawala@student.uts.edu.au
-                </a>
+                <i>
+                  <a href="mailto: sarrah.barodawala@student.uts.edu.au">
+                    sarrah.barodawala@student.uts.edu.au
+                  </a>
+                </i>
               </span>
             }
             img={Sarrah}
