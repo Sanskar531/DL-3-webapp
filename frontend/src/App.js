@@ -28,14 +28,12 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/aboutus" element={<Aboutus />} />
             <Route path="/contactus" element={<Contactus />} />
-            <Route path="/inference/">
-              <Route path="image/" element={<Inference />} />
-              <Route
-                path="video/"
-                element={<Video loadingHandler={setLoading} />}
-              />
-              <Route path="real-time/" element={<RealTime />} />
-            </Route>
+            <Route path="/inference/image/" element={<Inference />} />
+            <Route
+              path="/inference/video/"
+              element={<Video loadingHandler={setLoading} />}
+            />
+            <Route path="/inference/real-time/" element={<RealTime />} />
           </Routes>
         </AnimatePresence>
       </div>
